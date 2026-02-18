@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
@@ -12,6 +13,8 @@ builder.Services.AddDbContext<AppDbContext>(opt =>
 
 var app = builder.Build();
 
+// Configure CORS
+app.UseCors(options => options.AllowAnyHeader().AllowAnyMethod().WithOrigins("http://localhost:3000", "https://localhost:3000"));
 
 app.MapControllers();
 
